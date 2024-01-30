@@ -16,10 +16,11 @@ function Tabel() {
     const [uemail, usetEmail]= useState('')
     const[editId ,setEditID]= useState(-1)
     const [errors, setErrors]= useState(false)
+
     useEffect(()=> {
             axios.get('http://localhost:3000/users')
             .then(res => setData(res.data))
-            .catch(er => console.log(er));
+            .catch(errors => console.log(errors));
     },[])
     function isValidEmail(email) {
       return /\S+@\S+\.\S+/.test(email);
@@ -36,6 +37,7 @@ function Tabel() {
   
     const handleSubmit = (event) => {
       event.preventDefault();
+      
       if(name.length==0 || email.length==0 || passport.length==0 || phone.length==0){
         setErrors(true)
       }
@@ -43,7 +45,7 @@ function Tabel() {
       //   errors.email = 'Invalid email address'
       //   setErrors(true)
       // }
-      const id= data.length + 1;
+      const id= String (data.length + 1);
       // const validationErrors ={}
       // if(!data.name.trim()){
       //   validationErrors.name ="Full Name Is Required!"
@@ -60,7 +62,7 @@ function Tabel() {
       if(name && passport && email && phone){
       axios.post('http://localhost:3000/users', {id: id ,passport: passport, name: name , email: email , phone: phone })
       .then(res => {
-        location.reload()
+        location.reload(res)
       })
       .catch(errors => console.log(errors));
     }
