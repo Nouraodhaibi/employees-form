@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState , useRef} from "react"
-import 'C:/Users/dell/Desktop/em2/src/App.css'
+import '../App.css'
 import {CSVLink} from 'react-csv'
 import {useReactToPrint} from "react-to-print"
 
