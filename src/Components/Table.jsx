@@ -18,7 +18,7 @@ function Tabel() {
     const [errors, setErrors]= useState(false)
 
     useEffect(()=> {
-            axios.get('http://localhost:3000/users')
+            axios.get('https://backend-9-djc2.onrender.com/users')
             .then(res => setData(res.data))
             .catch(errors => console.log(errors));
     },[])
@@ -60,16 +60,17 @@ function Tabel() {
       //   alert("Form Submitted Succesfully")
       // }
       if(name && passport && email && phone){
-      axios.post('http://localhost:3000/users', {id: id ,passport: passport, name: name , email: email , phone: phone })
+      axios.post('https://backend-9-djc2.onrender.com/users', {id: id ,passport: passport, name: name , email: email , phone: phone })
       .then(res => {
         location.reload(res)
+        
       })
       .catch(errors => console.log(errors));
     }
     }
     
     const handleEdit =(id)=>{
-      axios.get('http://localhost:3000/users/'+id)
+      axios.get('https://backend-9-djc2.onrender.com/users/'+id)
       .then(res =>{
         // checkEmail(res.data)
         console.log(res.data)
@@ -82,7 +83,7 @@ function Tabel() {
       setEditID(id)
     }
     const handleUpdate = ()=>{
-      axios.put('http://localhost:3000/users/'+editId, {id: editId, passport: upassport, name: uname,email: uemail, phone: uphone})
+      axios.put('https://backend-9-djc2.onrender.com/users/'+editId, {id: editId, passport: upassport, name: uname,email: uemail, phone: uphone})
       .then(res => {
         console.log(res);
         location.reload();
@@ -91,7 +92,7 @@ function Tabel() {
     }
 
     const handleDelete = (id) => {
-      axios.delete('http://localhost:3000/users/'+(id))
+      axios.delete('https://backend-9-djc2.onrender.com/users/'+(id))
       .then(res =>{
       location.reload();
        
@@ -111,6 +112,7 @@ function Tabel() {
     //     alert("Email Is Already Exist")
     //   }
     // }
+   
   return (
     <div className="container">
       <div className="lbl"> 
@@ -151,6 +153,11 @@ function Tabel() {
           <div className="btn">
          
           <button className="btn">Add</button> 
+          {/* <div>
+            { !handleSubmit.name && !handleSubmit.email && ! handleSubmit.passport && ! handleSubmit.phone?
+            <label>Submitted Successfully!</label>:""
+              }
+          </div> */}
           </div>
         </form>
       </div>

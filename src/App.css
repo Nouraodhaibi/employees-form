@@ -88,8 +88,9 @@ justify-content:space-between;
 }
 .lbl{
   
-  background-color: rgba(240, 239, 237, 0.178);
-
+  background-color: rgba(106, 106, 105, 0.178);
+  text-emphasis-color: black;
+  color: rgb(78, 74, 74);
   position: grid;
   grid-template-columns: auto;
   padding: 100px 15px;
