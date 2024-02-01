@@ -4,6 +4,7 @@ import '../App.css'
 import {CSVLink} from 'react-csv'
 import {useReactToPrint} from "react-to-print"
 
+
 function Tabel() {
     const [data, setData]= useState([])
     const [name, setName]= useState('')
@@ -24,11 +25,13 @@ function Tabel() {
     },[])
     function isValidEmail(email) {
       return /\S+@\S+\.\S+/.test(email);
+      
     }
     const handleChange = event => {
-      if (!isValidEmail(event.target.value)) {
-        setErrors('Email is invalid');
-      } else {
+      if (! isValidEmail(event.target.value)) {
+        setErrors(true);
+      } 
+      else {
         setErrors(false);
       }
   
@@ -38,7 +41,7 @@ function Tabel() {
     const handleSubmit = (event) => {
       event.preventDefault();
       
-      if(name.length==0 || email.length==0 || passport.length==0 || phone.length==0){
+      if(name.length==0 || email.length==0 || passport.length==0 || phone.length==0 || ! passport.length =='10'|| phone.length =='10'){
         setErrors(true)
       }
       //  else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
@@ -59,9 +62,9 @@ function Tabel() {
       // if(Object.keys(validationErrors).length === 0){
       //   alert("Form Submitted Succesfully")
       // }
-      if(name && passport && email && phone){
+      if( !errors &&name && passport && email && phone){
       axios.post('https://backend-9-djc2.onrender.com/users', {id: id ,passport: passport, name: name , email: email , phone: phone })
-      .then(res => {
+      .then(res => { alert("Submitted Successfully!")
         location.reload(res)
         
       })
@@ -113,6 +116,19 @@ function Tabel() {
     //   }
     // }
    
+  //  function isValidSub (email , name , phone , passport) {
+  //   return (email && name && phone && passport);
+  // }
+  // const handlesub = event => {
+  //   if (!isValidSub(event.target.value)) {
+  //     setErrors('sub');
+  //   } else {
+  //     setErrors(false);
+  //   }
+
+    
+  // };
+
   return (
     <div className="container">
       <div className="lbl"> 
@@ -121,40 +137,60 @@ function Tabel() {
       <h6>*note that: You must complete all fields</h6>
       <div className="form-div">
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Enter Passport Number" onChange={e => setPassport(e.target.value)}  /> 
+          <div className="vv">
+            <label className="cc">Passport Number:</label>
+          <input type="number"  placeholder="Enter Passport Number" onChange={e => setPassport(e.target.value)}  /> 
+          </div>
           <div>
             {errors && passport.length<=0?
-          <label >Passport Number Cant be Empty</label>:""}
+          <label className="n">Passport Number Cant be Empty</label>:
+
+          errors &&  passport.length <'10' || passport.length >'10'?
+          <label className="n">Passport Number Must Be 10 Digit</label>
+          :""}
           </div>
+          <div className="vv">
+            <label className="cc">Full Name:</label>
           <input type="text" placeholder="Enter Full Name" onChange={e => setName(e.target.value)} />
+          </div>
           <div>
             {errors && name.length<=0?
-          <label >Full Name Cant be Empty</label>:""}
+          <label className="n">Full Name Cant be Empty</label>:""}
           </div>
-          <input type="text" placeholder="Enter Phone Number" onChange={e => setPhone(e.target.value)} />
+          <div className="vv">
+            <label className="cc">Phone Number:</label>
+          <input type="number" placeholder="Enter Phone Number" onChange={e => setPhone(e.target.value)} />
+          </div>
           <div>
             {errors && phone.length<=0? 
-          <label >Phone Number Cant be Empty</label>: ""}
+          <label className="n">Phone Number Cant be Empty</label>: 
+
+          errors &&  phone.length <'10' || phone.length >'10'?
+          <label className="n">phone Number Must Be 10 Digit</label>
+          :""}
           </div>
+          <div className="vv">
+            <label className="cc">Email:</label>
           <input type="text" placeholder="Enter Email"  onChange={handleChange} />
+          </div>
           <div>
             {errors && email.length<=0?
-          <label >Email Cant be Empty</label>: 
+          <label className="n">Email Cant be Empty</label>: 
           
-          errors && isValidEmail?
-            <label>Email Is Not Valid </label>: ""
+             errors && ! email.isValidEmail?
+            <label className="n">Email Is Not Valid </label>: ""
             // errors && !checkEmail?
             // <label>Email Is Already Exist </label>: ""
           } 
 
-          
+      
           </div>
           {/* {errors.email && <span>{errors.email}</span>} */}
-          <div className="btn">
+          <div className="btn1">
          
-          <button className="btn">Add</button> 
+          <button className="btn1">Add</button> 
           {/* <div>
-            { !handleSubmit.name && !handleSubmit.email && ! handleSubmit.passport && ! handleSubmit.phone?
+            {!errors && handleSubmit?
             <label>Submitted Successfully!</label>:""
               }
           </div> */}

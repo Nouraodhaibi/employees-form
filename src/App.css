@@ -39,16 +39,58 @@ justify-content:space-between;
   
 }
 
-.form-div{
-  margin-bottom: 10px;
-  display:block;
+.vv{
+  padding: 5px ; 
+   width: 100%;
+  display: grid;
+  grid-template-columns:auto auto ;
+  justify-content:flex-end;
+  align-items:center;
+  align-content:center;
   
+}
+.cc{
+  width: 100%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style:italic;
+ display: grid;
+  color: black;
+  display: grid;
+  grid-template-columns:auto auto;
+  justify-content:center;
+  align-items:center;
+
+    gap: 0;
+}
+
+.form-div{
+  width: 80%;
+
+  
+  justify-content:center;
+  align-items:baseline;
+  align-content:center; 
+   display:grid;
+   align-content:center;
+   color: black;
+  text-align: center;
+  margin-bottom: 10px;
+  
+
 }
 
 .form-div form input{
-  width: 50%;
-  padding: 5px;
-  
+  display: grid;
+  justify-content:center;
+  align-items:center;
+  align-content:center; 
+ justify-content: center;
+  color: black;
+  text-align: center;
+  width: 100%;
+  padding: 11px;
+  background-color: rgb(191, 191, 191);
+
 }
 
 .form-div form button{
@@ -73,12 +115,29 @@ justify-content:space-between;
   background-color: rgb(86, 86, 106);
   color: white; */
 }
+.n{
+  display: grid;
+  justify-content:center;
+  align-items:center;
+  align-content:center; 
+ justify-content: center;
+}
+.btn1{
+  position:relative;
+  padding: 19px 6px;
+ padding-left: 160px;
+   display: grid;
+    justify-content:center;
+}
 .btn {
-  justify-content:space-between;
-  
+ 
   position: grid;
-  grid-template-columns: auto;
-  padding: 17px 50px;
+  justify-content:center;
+  align-items:center;
+  align-content:center; 
+ justify-content: center;
+  grid-template-columns: auto auto;
+  padding: 17px 79px;
   /* width: 47%; */
   background: content-box;
   background-attachment: fixed;
@@ -161,4 +220,6 @@ justify-content:space-between;
 }
 label{
   color: firebrick;
+  
+
 }
